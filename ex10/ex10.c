@@ -1,39 +1,41 @@
 #include <stdio.h>
+#include <ctype.h>
+
+int convert_upper_to_lower(char letter)
+{
+	return tolower(letter);
+}
 
 int main(int argc, char *argv[])
 {
 
+	printf("\nSWITCH CASE CHECKING FOR VOWELS:\n");
 	for (int y = argc-1; y > 0; y--) {
 		char letter = argv[y][0];
+		letter = convert_upper_to_lower(letter);
 		
 		switch (letter) {
 			case 'a':
-			case 'A':
 				printf("%d: 'A'\n", y);
 				break;
 				
 			case 'e':
-			case 'E':
 				printf("%d: 'E'\n", y);
 				break;
 				
 			case 'i':
-			case 'I':
 				printf("%d: 'I'\n", y);
 				break;
 				
 			case 'o':
-			case 'O':
 				printf("%d: 'O'\n", y);
 				break;
 				
 			case 'u':
-			case 'U':
 				printf("%d: 'U'\n", y);
 				break;
 				
 			case 'y':
-			case 'Y':
 				if (y > 2) {
 					//it's only sometimes y
 					printf("%d: 'Y'\n", y);
@@ -44,7 +46,9 @@ int main(int argc, char *argv[])
 				printf("%d: %c is not a vowel\n", y, letter);
 		}
 	}
-
+	
+	
+	printf("\nLOOP TO DISPLAY ALL ARGUMENTS:\n");
 	int i = 0;
 	
 	//go through each string in argv
@@ -53,6 +57,7 @@ int main(int argc, char *argv[])
 		printf("arg %d: %s\n", i, argv[i]);
 	}
 	
+	printf("\nLOOP DISPLAYING ALL STATES IN THE STATES ARR:\n");
 	//let's make our own array of strings
 	char *states[] = {
 		"California", "Oregon", "Washington", "Texas"
