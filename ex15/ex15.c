@@ -13,6 +13,14 @@ int more_math(int(*cb)(int, int)) {
 	return result * 2;
 }
 
+void print_backwards(int count, int *cur_age, char **cur_name)
+{
+	int i = count-1;
+	for(i = count-1; i >= 0; i--) {
+		printf("My name is %s and I am %d years old.\n", *(cur_name + i), *(cur_age + i));
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	//create two arrays we care about
@@ -57,6 +65,10 @@ int main(int argc, char *argv[])
 	
 	printf("---------------\n");
 	
+	print_backwards(count, cur_age, cur_name);
+	
+	printf("---------------\n");
+	
 	//third way, pointers are just arrays
 	for (i = 0; i < count; i++) {
 		printf("%s is %d years old again.\n", cur_name[i], cur_age[i]);
@@ -69,8 +81,21 @@ int main(int argc, char *argv[])
 		printf("%s lived %d years so far.\n", *cur_name, *cur_age);
 	}
 	
+	printf("---------------\n");
+	
+	//assign pointers to last elements of the array
+	char **last_name = (char **)(&names + 1) - 1;
+	int *last_age = (int *)(&ages + 1) - 1;
+	for(cur_name=last_name, cur_age=last_age; cur_age != ages; cur_name--, cur_age--) {
+		printf("Hi, I'm %d year old %s.\n", *cur_age, *cur_name);
+	}
+	
+	printf("---------------\n");
+	
 	int result = more_math(fpointer);
 	printf("MORE MATH: (5 + 5) * 2: %d\n", result);
+	
+	printf("---------------\n");
 	
 	return 0;
 }
