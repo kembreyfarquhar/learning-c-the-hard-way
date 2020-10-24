@@ -1,0 +1,5 @@
+Creating the target:
+	target create "filename"
+	
+Creating a breakpoint:
+	breakpoint set --name function_name
